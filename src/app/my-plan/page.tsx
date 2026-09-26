@@ -9,19 +9,21 @@ import { FiClock, FiStar, FiCheck, FiX, FiChevronDown } from 'react-icons/fi';
 import { FaFire } from 'react-icons/fa';
 
 export default function MyPlanPage() {
-  const { 
-    todaysPlan, 
-    setTodaysPlan, 
+  const {
+    todaysPlan,
+    setTodaysPlan,
     saveLater, setSaveLater
   } = useContext(WorkoutContext);
- //sss
+
   const [activeTab, setActiveTab] = useState<'today' | 'saved'>('today');
   const [sortBy, setSortBy] = useState<'duration' | 'calories' | 'rating'>('duration');
 
-//sss
+
   const currentList = activeTab === 'today' ? todaysPlan : saveLater;
 
-  
+  const totalExercises = currentList.length;
+  const totalMinutes = currentList.reduce((acc, curr) => acc + (curr.duration || 0), 0);
+  const totalCalories = currentList.reduce((acc, curr) => acc + (curr.caloriesBurned || 0), 0);
 
   const sortedList = [...currentList].sort((a, b) => {
     if (sortBy === 'duration') return b.duration - a.duration;
@@ -35,9 +37,9 @@ export default function MyPlanPage() {
 
   return (
     <main className="min-h-screen bg-[#0b0c0e] text-white px-4 md:px-12 py-10 flex flex-col items-center relative">
-      
-    
-      
+
+
+
 
       <div className="max-w-6xl w-full space-y-6">
 
@@ -53,41 +55,39 @@ export default function MyPlanPage() {
         <div className="w-full bg-[#12141a] border border-gray-800/80 rounded-2xl p-6 grid grid-cols-3 gap-4">
           <div className="flex flex-col">
             <span className="text-gray-400 text-xs font-medium mb-1">Exercises</span>
-            <span className="text-3xl font-black text-[#a3e635]">0</span>
+            <span className="text-3xl font-black text-[#a3e635]">{totalExercises}</span>
           </div>
 
           <div className="flex flex-col border-l border-gray-800/80 pl-6">
             <span className="text-gray-400 text-xs font-medium mb-1">Minutes</span>
-            <span className="text-3xl font-black text-white">0</span>
+            <span className="text-3xl font-black text-white">{totalMinutes}</span>
           </div>
 
           <div className="flex flex-col border-l border-gray-800/80 pl-6">
             <span className="text-gray-400 text-xs font-medium mb-1">Calories</span>
-            <span className="text-3xl font-black text-white">0</span>
+            <span className="text-3xl font-black text-white">{totalCalories}</span>
           </div>
         </div>
 
         <div className="w-full bg-[#12141a] border border-gray-800/80 rounded-2xl p-2 flex items-center justify-between">
-          
+
           {/* Tabs */}
           <div className="flex items-center gap-1 bg-[#0b0c0e]/60 p-1 rounded-xl">
             <button
               onClick={() => setActiveTab('today')}
-              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'today'
+              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'today'
                   ? 'bg-[#1c202a] text-white shadow'
                   : 'text-gray-400 hover:text-white'
-              }`}
+                }`}
             >
               Today's Plan
             </button>
             <button
               onClick={() => setActiveTab('saved')}
-              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'saved'
+              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'saved'
                   ? 'bg-[#1c202a] text-white shadow'
                   : 'text-gray-400 hover:text-white'
-              }`}
+                }`}
             >
               Saved
             </button>
@@ -185,7 +185,7 @@ export default function MyPlanPage() {
 
                   {activeTab === 'today' && (
                     <button
-                      
+
                       className="bg-[#a3e635] hover:bg-[#8ee01d] text-black font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
                     >
                       <FiCheck className="w-4 h-4 stroke-[3]" />
@@ -194,7 +194,7 @@ export default function MyPlanPage() {
                   )}
 
                   <button
-                    
+
                     className="p-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
                     aria-label="Remove item"
                   >
