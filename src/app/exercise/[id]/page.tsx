@@ -107,18 +107,11 @@ export default async function DetailPage({
                             <ol className="space-y-2 text-xs text-gray-400 leading-relaxed list-decimal list-inside">
                                 {workout.instructions && workout.instructions.length > 0 ? (
                                     workout.instructions.map((step, idx) => (
-                                        <li key={idx} className="pl-1">
-                                            <span className="text-gray-300">{step}</span>
+                                        <li key={idx} className="pl-1 font-bold text-sm">
+                                            <span className="text-gray-300 ">{step}</span>
                                         </li>
                                     ))
-                                ) : (
-                                    <>
-                                        <li>Lie on the bench with eyes under the bar and feet planted.</li>
-                                        <li>Unrack with locked elbows and lower the bar to mid-chest.</li>
-                                        <li>Press up in a slight arc until elbows lock without bouncing.</li>
-                                        <li>Keep shoulder blades pinched and a natural arch in the back.</li>
-                                    </>
-                                )}
+                                ) : ""}
                             </ol>
                         </div>
 

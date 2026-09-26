@@ -1,36 +1,170 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💪 FitLog — Workout Library
 
-## Getting Started
+> **Train with intent. Log every set.**
 
-First, run the development server:
+FitLog is a modern, responsive workout library and workout planning web application. It allows users to explore exercises, view detailed workout information, save workouts for later, and build a personalized plan for today's workout.
+
+The application provides a clean dark-themed gym experience designed to make discovering and managing workouts simple and efficient.
+
+---
+
+## 🚀 Technologies Used
+
+* **Next.js** — React framework and application development
+* **React** — Building reusable UI components
+* **Tailwind CSS** — Responsive styling and modern UI design
+* **Next.js App Router** — Page navigation and routing
+* **REST API** — Fetching workout data dynamically
+* **JavaScript** — Application logic and interactivity
+* **React-Toastify** — Adding Toast for notifying
+* **Daisy-UI** — Adding reusuable Component
+* **React-Icons** — For Icons used in the app
+
+---
+
+## ✨ Key Features
+
+### 1. 🏋️ Workout Library
+
+Browse a complete collection of workouts displayed in a responsive card-based grid. Each workout includes:
+
+* Workout image
+* Category
+* Equipment
+* Duration
+* Calories
+* Rating
+
+Users can also sort workouts by **Duration, Calories, or Rating**.
+
+### 2. 📋 Today's Workout Plan
+
+Users can add workouts to their **Today's Plan** and manage their daily workout list.
+
+The My Plan page provides live statistics for:
+
+* Number of exercises
+* Total workout minutes
+* Total calories
+
+Users can also remove workouts or mark completed exercises as done.
+
+### 3. 🔖 Save Workouts for Later
+
+Users can save their favorite workouts for later access. Saved workouts are organized separately from the active daily workout plan.
+
+### 4. 🔎 Detailed Workout Pages
+
+Every workout has a dedicated detail page containing:
+
+* Large workout illustration
+* Description
+* Categories
+* Equipment
+* Difficulty
+* Sets and reps
+* Duration
+* Calories
+* Rating
+* Step-by-step instructions
+
+Users can directly add the workout to their plan or save it for later.
+
+### 5. 📱 Fully Responsive Design
+
+FitLog is designed to work smoothly across:
+
+* 📱 Mobile devices
+* 📲 Tablets
+* 💻 Desktops
+
+The layout, workout grid, navigation, hero section, and workout cards adapt to different screen sizes.
+
+---
+
+## 🎯 Additional Features
+
+* ⚡ Loading states while workout data is being fetched
+* 🔔 Toast notifications for user actions
+* 🚫 Custom 404 page for invalid routes
+* 🔢 Live Plan and Saved counters in the navbar
+* 🎨 Dark, modern gym-focused UI
+* 🧭 Easy navigation between Library, Workout Details, and My Plan
+* ✅ Mark workouts as completed
+* ❌ Remove workouts from the plan
+* 📊 Sort workouts by duration, calories, and rating
+
+---
+
+## 📂 Project Structure
+
+```text
+fitlog/
+├── app/
+│   ├── page
+│   ├── my-plan/
+│   └── workout/
+├── components/
+├── public/
+├── ...
+├── package.json
+└── README.md
+```
+
+---
+
+## 🌐 API
+
+FitLog uses the FitLog REST API to retrieve workout data.
+
+**All workouts:**
+
+```text
+https://api.api-store.workers.dev/api/fitlog
+```
+
+**Single workout:**
+
+```text
+https://api.api-store.workers.dev/api/fitlog:id
+```
+
+---
+
+## 📱 Responsive Experience
+
+The application follows a responsive-first approach so users can browse and manage workouts comfortably regardless of their device size.
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository and install the dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 👨‍💻 Developer
 
-To learn more about Next.js, take a look at the following resources:
+**Fayjullah Haque Emon**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Built with ❤️ using Next.js and Tailwind CSS.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> **FITLOG — Train hard. Log honest.**
