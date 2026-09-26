@@ -32,7 +32,14 @@ export default function MyPlanPage() {
     return 0;
   });
 
-
+const handleRemove = (item:LibraryCardType) => {
+    if (activeTab === 'today') {
+      setTodaysPlan(todaysPlan.filter((workout) => workout.id !== item.id));
+    } else if (setSaveLater) {
+      setSaveLater(saveLater.filter((workout) => workout.id !== item.id));
+    }
+    
+  };
 
 
   return (
@@ -194,7 +201,9 @@ export default function MyPlanPage() {
                   )}
 
                   <button
-
+                    onClick={()=>{
+                      handleRemove(item)
+                    }}
                     className="p-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
                     aria-label="Remove item"
                   >
