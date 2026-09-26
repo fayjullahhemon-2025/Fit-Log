@@ -7,12 +7,16 @@ import { WorkoutContext } from '@/context/WorkoutContext';
 import { LibraryCardType } from '@/types/types'
 import { FiClock, FiStar, FiCheck, FiX, FiChevronDown } from 'react-icons/fi';
 import { FaFire } from 'react-icons/fa';
+import { Bounce, toast } from 'react-toastify';
 
 export default function MyPlanPage() {
   const {
     todaysPlan,
     setTodaysPlan,
-    saveLater, setSaveLater
+    saveLater, setSaveLater,
+    completedWorkoutIds,
+    markAsDone,
+    removeFromCompleted
   } = useContext(WorkoutContext);
 
   const [activeTab, setActiveTab] = useState<'today' | 'saved'>('today');
@@ -32,17 +36,69 @@ export default function MyPlanPage() {
     return 0;
   });
 
-const handleRemove = (item:LibraryCardType) => {
+  const handleRemove = (item: LibraryCardType) => {
     if (activeTab === 'today') {
       setTodaysPlan(todaysPlan.filter((workout) => workout.id !== item.id));
+      toast(
+        <div className="flex items-center gap-2">
+          <span className="flex items-center justify-center w-5 h-5 bg-red-600 text-white rounded-full text-xs font-bold">
+            !
+          </span>
+          <span>{item.name} Removed </span>
+        </div>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        }
+      );
     } else if (setSaveLater) {
       setSaveLater(saveLater.filter((workout) => workout.id !== item.id));
+      toast(
+        <div className="flex items-center gap-2">
+          <span className="flex items-center justify-center w-5 h-5 bg-red-600 text-white rounded-full text-xs font-bold">
+            !
+          </span>
+          <span>{item.name} Removed</span>
+        </div>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        }
+      );
     }
-    
+    removeFromCompleted(item.id);
   };
- const handleMarkDone = (item:LibraryCardType) => {
-    setTodaysPlan(todaysPlan.filter((workout) => workout.id !== item.id));
-
+  // const [completedWorkoutIds, setCompletedWorkoutIds] = useState<(string | number)[]>([]);
+  const handleMarkDone = (item: LibraryCardType) => {
+    if (!completedWorkoutIds.includes(item.id)) {
+      markAsDone(item.id);
+      // setCompletedWorkoutIds((prev) => [...prev, item.id]);
+      toast.success('Mark as Done', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    }
   };
 
   return (
@@ -86,8 +142,8 @@ const handleRemove = (item:LibraryCardType) => {
             <button
               onClick={() => setActiveTab('today')}
               className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'today'
-                  ? 'bg-[#1c202a] text-white shadow'
-                  : 'text-gray-400 hover:text-white'
+                ? 'bg-[#1c202a] text-white shadow'
+                : 'text-gray-400 hover:text-white'
                 }`}
             >
               Today's Plan
@@ -95,8 +151,8 @@ const handleRemove = (item:LibraryCardType) => {
             <button
               onClick={() => setActiveTab('saved')}
               className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'saved'
-                  ? 'bg-[#1c202a] text-white shadow'
-                  : 'text-gray-400 hover:text-white'
+                ? 'bg-[#1c202a] text-white shadow'
+                : 'text-gray-400 hover:text-white'
                 }`}
             >
               Saved
@@ -131,7 +187,7 @@ const handleRemove = (item:LibraryCardType) => {
               Browse the library and add a lift to get today moving.
             </p>
             <Link
-              href="/workouts"
+              href="/"
               className="bg-[#a3e635] hover:bg-[#8ee01d] text-black font-extrabold text-xs tracking-wider uppercase px-6 py-3 rounded-full transition-colors duration-200 active:scale-95"
             >
               Go to workouts
@@ -195,18 +251,20 @@ const handleRemove = (item:LibraryCardType) => {
 
                   {activeTab === 'today' && (
                     <button
-                      onClick={()=>{
-                        handleMarkDone(item)
-                      }}
-                      className="bg-[#a3e635] hover:bg-[#8ee01d] text-black font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
+                      onClick={() => handleMarkDone(item)}
+                      disabled={completedWorkoutIds.includes(item.id)}
+                      className={`font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors ${completedWorkoutIds.includes(item.id)
+                        ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
+                        : 'bg-[#a3e635] hover:bg-[#8ee01d] text-black active:scale-95 cursor-pointer'
+                        }`}
                     >
                       <FiCheck className="w-4 h-4 stroke-3" />
-                      <span>Mark as Done</span>
+                      <span>{completedWorkoutIds.includes(item.id) ? 'Done' : 'Mark as Done'}</span>
                     </button>
                   )}
 
                   <button
-                    onClick={()=>{
+                    onClick={() => {
                       handleRemove(item)
                     }}
                     className="p-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
