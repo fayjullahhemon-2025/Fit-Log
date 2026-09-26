@@ -4,10 +4,13 @@ import { WorkoutContext } from "@/context/WorkoutContext";
 import { LibraryCardType } from "@/types/types";
 import React, { useContext } from "react"
 import { FiPlusCircle, FiBookmark } from 'react-icons/fi';
-interface PlanBtnType{
-    workout:LibraryCardType
+// import { toast } from 'sonner';
+// import { MdCancel } from "react-icons/md";
+
+interface PlanBtnType {
+    workout: LibraryCardType
 }
-export default function PlanBtn({workout}:PlanBtnType) {
+export default function PlanBtn({ workout }: PlanBtnType) {
     const { todaysPlan, setTodaysPlan } = useContext(WorkoutContext);
     const handlePlans = () => {
         console.log('triggerd plans btn', workout)
@@ -15,7 +18,7 @@ export default function PlanBtn({workout}:PlanBtnType) {
         if (!exist) {
             setTodaysPlan([...todaysPlan, workout])
         } else {
-            alert('already added')
+            // toast.error("Already in your plan");
         }
     }
     return (
