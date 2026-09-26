@@ -52,7 +52,7 @@ export default async function LibraryCard({ plan }: planPropType) {
 
   
           <div>
-            <div className="h-[1px] bg-gray-800/80 w-full mb-3" />
+            <div className="h-px bg-gray-800/80 w-full mb-3" />
             <div className="flex items-center gap-4 text-gray-400 text-xs font-semibold">
 
               <div className="flex items-center gap-1.5">

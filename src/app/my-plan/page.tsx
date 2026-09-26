@@ -147,7 +147,7 @@ const handleRemove = (item:LibraryCardType) => {
               >
 
                 <div className="flex items-center gap-4">
-                  <div className="relative w-28 h-20 sm:w-32 sm:h-20 rounded-xl overflow-hidden bg-gray-900 flex-shrink-0">
+                  <div className="relative w-28 h-20 sm:w-32 sm:h-20 rounded-xl overflow-hidden bg-gray-900 shrink-0">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -178,7 +178,7 @@ const handleRemove = (item:LibraryCardType) => {
 
                       <div className="flex items-center gap-1.5">
                         <FiStar className="w-3.5 h-3.5 text-gray-400" />
-                        <span>{item.rating?.toFixed(1)}</span>
+                        <span>{item.rating}</span>
                       </div>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ const handleRemove = (item:LibraryCardType) => {
 
                 <div className="flex items-center justify-end gap-3 pt-2 sm:pt-0">
                   <Link
-                    href={`/workouts/${item.id}`}
+                    href={`/exercise/${item.id}`}
                     className="bg-[#1c202a] hover:bg-gray-800 text-gray-300 font-bold text-xs px-4 py-2.5 rounded-xl border border-gray-800 transition-colors"
                   >
                     View Details
@@ -200,7 +200,7 @@ const handleRemove = (item:LibraryCardType) => {
                       }}
                       className="bg-[#a3e635] hover:bg-[#8ee01d] text-black font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
                     >
-                      <FiCheck className="w-4 h-4 stroke-[3]" />
+                      <FiCheck className="w-4 h-4 stroke-3" />
                       <span>Mark as Done</span>
                     </button>
                   )}
