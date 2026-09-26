@@ -40,7 +40,10 @@ const handleRemove = (item:LibraryCardType) => {
     }
     
   };
+ const handleMarkDone = (item:LibraryCardType) => {
+    setTodaysPlan(todaysPlan.filter((workout) => workout.id !== item.id));
 
+  };
 
   return (
     <main className="min-h-screen bg-[#0b0c0e] text-white px-4 md:px-12 py-10 flex flex-col items-center relative">
@@ -192,7 +195,9 @@ const handleRemove = (item:LibraryCardType) => {
 
                   {activeTab === 'today' && (
                     <button
-
+                      onClick={()=>{
+                        handleMarkDone(item)
+                      }}
                       className="bg-[#a3e635] hover:bg-[#8ee01d] text-black font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
                     >
                       <FiCheck className="w-4 h-4 stroke-[3]" />
