@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import logo from "@/assets/logo.png";
+import { WorkoutContext } from "@/context/WorkoutContext";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function Navbar() {
         { name: "Workouts", href: "/" },
         { name: "My Plan", href: "/my-plan" },
     ];
+    const {todaysPlan,saveLater} = useContext(WorkoutContext);
     return (
         <header className="bg-[#0b0c0e] text-white px-4 md:px-6 py-3.5 border-b border-gray-800 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -53,24 +55,22 @@ export default function Navbar() {
                     </ul>
                 </nav>
 
-                {/* Right Action Counters & Hamburger Toggle */}
                 <div className="flex items-center gap-3 sm:gap-4 text-xs">
 
                     <div className="flex items-center gap-1.5 text-gray-300">
                         <span>Plan</span>
                         <span className="bg-[#a3e635] text-black font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                            0
+                            {todaysPlan.length>0?todaysPlan.length:'0'}
                         </span>
                     </div>
 
                     <div className="flex items-center gap-1.5 text-gray-300">
                         <span>Saved</span>
                         <span className="bg-[#18191c] border border-gray-700 text-gray-300 font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                            0
+                            {saveLater.length>0?saveLater.length:'0'}
                         </span>
                     </div>
 
-                    {/* Mobile Menu Toggle */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         className="md:hidden text-gray-300 hover:text-white p-1 focus:outline-none"
@@ -85,7 +85,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Navigation Drawer */}
+
             {isMobileMenuOpen && (
                 <nav className="md:hidden pt-4 pb-2 border-t border-gray-800 mt-3">
                     <ul className="flex flex-col gap-2 m-0 p-0">

@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { FiPlusCircle, FiBookmark } from 'react-icons/fi';
 import { LibraryCardType } from '@/types/types';
+import PlanBtn from '@/components/exercise/PlanBtn';
+import SaveLaterBtn from '@/components/exercise/SaveLaterBtn';
 
 async function getDetail(id: number): Promise<LibraryCardType> {
     try {
@@ -121,15 +123,9 @@ export default async function DetailPage({
                         </div>
 
                         <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 pt-2">
-                            <button className="flex-1 flex items-center justify-center gap-2 bg-[#a3e635] hover:bg-[#8ee01d] text-black font-extrabold text-xs tracking-wider uppercase py-3 px-4 rounded-xl transition-colors duration-200 cursor-pointer active:scale-95">
-                                <FiPlusCircle className="w-4 h-4" />
-                                <span>Add to today's plan</span>
-                            </button>
+                            <PlanBtn workout={workout} ></PlanBtn>
 
-                            <button className="flex items-center justify-center gap-2 bg-[#12141a] hover:bg-gray-800 text-white border border-gray-800 font-extrabold text-xs tracking-wider uppercase py-3 px-5 rounded-xl transition-colors duration-200 cursor-pointer active:scale-95">
-                                <FiBookmark className="w-4 h-4 text-gray-400" />
-                                <span>Save for later</span>
-                            </button>
+                            <SaveLaterBtn workout={workout}></SaveLaterBtn>
                         </div>
 
                     </div>
