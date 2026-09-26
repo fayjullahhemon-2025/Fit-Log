@@ -17,7 +17,7 @@ export default async function Library() {
     const plans = await getPlans();
     console.log(plans)
     return (
-        <section className="bg-[#0b0c0e] min-h-screen text-white px-4 md:px-6 py-8">
+        <section id='library' className="  bg-[#0b0c0e] min-h-screen text-white px-4 md:px-6 py-8">
             <div className="max-w-7xl mx-auto space-y-6">
 
 
