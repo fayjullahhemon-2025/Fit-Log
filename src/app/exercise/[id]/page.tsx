@@ -4,10 +4,10 @@ import { FiPlusCircle, FiBookmark } from 'react-icons/fi';
 import { LibraryCardType } from '@/types/types';
 import PlanBtn from '@/components/exercise/PlanBtn';
 import SaveLaterBtn from '@/components/exercise/SaveLaterBtn';
-
+const BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 async function getDetail(id: number): Promise<LibraryCardType> {
     try {
-        const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`, {
+        const res = await fetch(`${BASE_URL}/api/fitlog/${id}`, {
             cache: 'force-cache',
         });
         if (!res.ok) {

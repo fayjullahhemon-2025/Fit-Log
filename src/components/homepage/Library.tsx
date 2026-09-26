@@ -1,10 +1,10 @@
 import React from 'react'
 import LibraryCard from './LibraryCard'
 import { LibraryCardType } from '@/types/types'
-
+const BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 const getPlans = async () => {
     try {
-        const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
+        const res = await fetch(`${BASE_URL}/api/fitlog`)
         if (!res.ok) {
             throw new Error('Fetching Failed')
         }
