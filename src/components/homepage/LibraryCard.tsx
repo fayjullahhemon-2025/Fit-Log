@@ -23,7 +23,7 @@ export default async function LibraryCard({ plan }: planPropType) {
             src={plan.image}
             alt={plan.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-cover  transition-transform duration-500 ease-out"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             unoptimized
           />
