@@ -135,32 +135,33 @@ export default function MyPlanPage() {
           </div>
         </div>
 
-        <div className="w-full bg-[#12141a] border border-gray-800/80 rounded-2xl p-2 flex items-center justify-between">
+        <div className="w-full bg-[#12141a] border border-gray-800/80 rounded-2xl p-2.5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
 
           {/* Tabs */}
-          <div className="flex items-center gap-1 bg-[#0b0c0e]/60 p-1 rounded-xl">
+          <div className="flex items-center gap-1 bg-[#0b0c0e]/60 p-1 rounded-xl w-full sm:w-auto justify-center sm:justify-start">
             <button
               onClick={() => setActiveTab('today')}
-              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'today'
-                ? 'bg-[#1c202a] text-white shadow'
-                : 'text-gray-400 hover:text-white'
+              className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-lg text-xs font-bold transition-all text-center ${activeTab === 'today'
+                  ? 'bg-[#1c202a] text-white shadow'
+                  : 'text-gray-400 hover:text-white'
                 }`}
             >
               Today's Plan
             </button>
             <button
               onClick={() => setActiveTab('saved')}
-              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'saved'
-                ? 'bg-[#1c202a] text-white shadow'
-                : 'text-gray-400 hover:text-white'
+              className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-lg text-xs font-bold transition-all text-center ${activeTab === 'saved'
+                  ? 'bg-[#1c202a] text-white shadow'
+                  : 'text-gray-400 hover:text-white'
                 }`}
             >
               Saved
             </button>
           </div>
 
-          <div className="flex items-center gap-2 pr-2">
-            <span className="text-gray-400 text-xs font-medium">Sort By</span>
+          {/* Sort By Section */}
+          <div className="flex items-center justify-end gap-2 w-full sm:w-auto pr-1 sm:pr-2">
+            <span className="text-gray-400 text-xs font-medium whitespace-nowrap">Sort By</span>
             <div className="relative">
               <select
                 value={sortBy}
