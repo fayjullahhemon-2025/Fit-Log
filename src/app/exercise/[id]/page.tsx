@@ -7,9 +7,7 @@ import SaveLaterBtn from '@/components/exercise/SaveLaterBtn';
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 async function getDetail(id: number): Promise<LibraryCardType> {
     try {
-        const res = await fetch(`${BASE_URL}/api/fitlog/${id}`, {
-            cache: 'no-store',
-        });
+        const res = await fetch(`${BASE_URL}/api/fitlog/${id}`);
         if (!res.ok) {
             throw new Error('Failed to fetch');
         }
