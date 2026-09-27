@@ -8,7 +8,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 async function getDetail(id: number): Promise<LibraryCardType> {
     try {
         const res = await fetch(`${BASE_URL}/api/fitlog/${id}`, {
-            cache: 'force-cache',
+            cache: 'no-store',
         });
         if (!res.ok) {
             throw new Error('Failed to fetch');
